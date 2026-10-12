@@ -1,813 +1,419 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Video Trending</title>
-
-<meta name="description"
-      content="Tonton video terbaru dan video lainnya.">
-
-<meta property="og:title"
-      content="Video Trending">
-
-<meta property="og:description"
-      content="Tonton video terbaru dan video lainnya.">
-
-<meta property="og:image"
-      content="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg">
-
-<meta property="og:type"
-      content="website">
-
-<meta name="twitter:card"
-      content="summary_large_image">
-
-<meta name="twitter:title"
-      content="Video Trending">
-
-<meta name="twitter:description"
-      content="Tonton video terbaru dan video lainnya.">
-
-<meta name="twitter:image"
-      content="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070812">
+<title>Video Player</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+:root{
+  --bg:#070812;
+  --panel:rgba(18,20,35,.84);
+  --text:#f7f8ff;
+  --muted:#9ca3b8;
+  --line:rgba(255,255,255,.09);
+  --purple:#8b5cf6;
+  --blue:#38bdf8;
+  --pink:#ec4899;
+  --radius:20px;
 }
-
-html,
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
 body{
-    width:100%;
-    min-height:100%;
+  min-height:100vh;color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(139,92,246,.20),transparent 30%),
+    radial-gradient(circle at 90% 10%,rgba(56,189,248,.13),transparent 28%),
+    radial-gradient(circle at 50% 65%,rgba(236,72,153,.08),transparent 32%),
+    linear-gradient(145deg,#070812 0%,#0b0d18 48%,#070812 100%);
 }
-
-body{
-    background:
-        radial-gradient(
-            circle at top left,
-            rgba(111,76,255,.18),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at top right,
-            rgba(255,45,150,.12),
-            transparent 30%
-        ),
-        #08080d;
-
-    color:#fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    padding-bottom:40px;
+button{font:inherit}
+.topbar{
+  position:sticky;top:0;z-index:30;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;background:rgba(7,8,18,.72);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
 }
-
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
-.container{
-    width:100%;
-    max-width:850px;
-
-    margin:0 auto;
-
-    padding:
-        18px
-        14px
-        30px;
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand-mark{
+  width:35px;height:35px;border-radius:11px;display:grid;place-items:center;
+  color:#fff;background:linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow:0 8px 25px rgba(139,92,246,.28);
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:18px;
+.share-top{
+  width:40px;height:40px;border:1px solid var(--line);border-radius:13px;
+  color:#fff;background:rgba(255,255,255,.05);cursor:pointer;
 }
+main{width:min(1060px,100%);margin:auto;padding:22px 16px 52px}
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+/* PLAYER */
+.player-shell{
+  position:relative;overflow:hidden;background:#000;
+  border:1px solid rgba(255,255,255,.10);border-radius:var(--radius);
+  box-shadow:0 25px 80px rgba(0,0,0,.45),0 0 55px rgba(99,102,241,.08);
 }
-
-.logo-icon{
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7b5cff,
-            #c52cff
-        );
-
-    box-shadow:
-        0 8px 30px
-        rgba(124,80,255,.30);
-
-    font-size:20px;
+video{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:#000}
+.video-top-gradient{
+  position:absolute;inset:0 0 auto;height:105px;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,0,0,.55),transparent);
 }
-
-.logo-text{
-    font-size:19px;
-    font-weight:800;
-
-    letter-spacing:.2px;
+.video-bottom-gradient{
+  position:absolute;inset:auto 0 0;height:120px;pointer-events:none;
+  background:linear-gradient(to top,rgba(0,0,0,.72),transparent);
 }
-
-.header-dot{
-    width:9px;
-    height:9px;
-
-    border-radius:50%;
-
-    background:#7dffb2;
-
-    box-shadow:
-        0 0 12px
-        rgba(125,255,178,.8);
+.player-badge{
+  position:absolute;top:13px;left:13px;z-index:3;
+  padding:7px 10px;border-radius:999px;font-size:11px;font-weight:700;
+  background:rgba(8,9,18,.62);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
 }
-
-
-/* =========================
-   VIDEO AREA
-========================= */
-
-.video-box{
-    position:relative;
-
-    width:100%;
-
-    overflow:hidden;
-
-    border-radius:20px;
-
-    background:#000;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.55),
-
-        0 0 0 1px
-        rgba(255,255,255,.06);
+.controls{
+  position:absolute;left:14px;right:14px;bottom:12px;z-index:4;
+  display:flex;align-items:center;gap:9px;
 }
-
-.video-box video{
-    display:block;
-
-    width:100%;
-
-    height:auto;
-
-    aspect-ratio:16 / 9;
-
-    background:#000;
-
-    object-fit:cover;
+.ctrl{
+  width:40px;height:38px;border:1px solid rgba(255,255,255,.13);
+  border-radius:11px;background:rgba(10,11,18,.64);color:#fff;
+  display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(10px);
 }
-
-
-/* =========================
-   VIDEO BADGE
-========================= */
-
-.video-badge{
-    position:absolute;
-
-    top:13px;
-    left:13px;
-
-    z-index:5;
-
-    padding:7px 11px;
-
-    border-radius:999px;
-
-    background:
-        rgba(0,0,0,.62);
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-    font-size:11px;
-    font-weight:700;
-
-    letter-spacing:.7px;
-
-    color:#fff;
+.progress{
+  flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.22);
+  overflow:hidden;cursor:pointer;
 }
-
-
-/* =========================
-   FULLSCREEN BUTTON
-========================= */
-
-.fullscreen-button{
-    position:absolute;
-
-    right:12px;
-    top:12px;
-
-    z-index:10;
-
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:
-        rgba(0,0,0,.65);
-
-    color:#fff;
-
-    font-size:19px;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
+.progress-fill{
+  width:0%;height:100%;
+  background:linear-gradient(90deg,var(--purple),var(--blue));
+  border-radius:99px;
 }
+.time{font-size:11px;color:#fff;min-width:70px;text-align:center}
 
-.fullscreen-button:hover{
-    transform:scale(1.05);
-
-    background:
-        rgba(108,75,255,.85);
+/* CUSTOM FULLSCREEN */
+.player-shell.is-fullscreen{
+  border-radius:0;border:0;width:100vw;height:100vh;
+  background:#000;display:flex;align-items:center;justify-content:center;
 }
-
-
-/* =========================
-   VIDEO INFO
-========================= */
-
-.video-info{
-    padding:
-        18px
-        4px
-        10px;
+.player-shell.is-fullscreen video{
+  width:100%;height:100%;max-height:100vh;aspect-ratio:auto
 }
+.player-shell.is-fullscreen .controls{bottom:18px}
 
-.video-title{
-    font-size:23px;
-
-    line-height:1.25;
-
-    font-weight:800;
-
-    margin-bottom:7px;
+/* AD CONTINUE OVERLAY */
+.continue-overlay{
+  position:absolute;inset:0;z-index:15;
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+  background:rgba(3,4,10,.66);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-
-.video-description{
-    color:#a9a9b5;
-
-    font-size:13px;
-
-    line-height:1.6;
+.continue-overlay.show{display:flex}
+.continue-box{
+  width:min(430px,100%);
+  padding:27px 23px 23px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(139,92,246,.22),transparent 52%),
+    rgba(13,15,27,.94);
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
 }
-
-
-/* =========================
-   DIVIDER
-========================= */
-
-.divider{
-    width:100%;
-    height:1px;
-
-    margin:
-        18px
-        0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.12),
-            transparent
-        );
+.ad-icon{
+  width:48px;height:48px;margin:0 auto 14px;border-radius:15px;
+  display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  font-size:20px;
 }
-
-
-/* =========================
-   SECTION TITLE
-========================= */
-
-.section-title{
-    display:flex;
-    align-items:center;
-
-    gap:8px;
-
-    margin-bottom:12px;
-
-    font-size:15px;
-
-    font-weight:800;
+.continue-box h2{font-size:21px;line-height:1.2}
+.continue-box p{
+  color:var(--muted);font-size:13px;line-height:1.55;margin:9px 0 18px
 }
-
-
-/* =========================
-   COLLECTION BUTTON
-========================= */
-
-.collection-box{
-    display:block;
-
-    width:100%;
-
-    padding:
-        17px
-        15px;
-
-    text-decoration:none;
-
-    color:#fff;
-
-    border-radius:17px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6848ff 0%,
-            #8b35ff 45%,
-            #e12b9a 100%
-        );
-
-    box-shadow:
-        0 15px 35px
-        rgba(113,62,255,.24);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+.ad-button{
+  display:block;width:100%;padding:12px 16px;border-radius:13px;
+  color:#fff;font-weight:800;text-decoration:none;
+  background:linear-gradient(135deg,var(--purple),#6366f1,var(--blue));
+  box-shadow:0 10px 30px rgba(99,102,241,.25);
+  border:0;cursor:pointer;
 }
+.small-note{font-size:10px;color:#71778b;margin-top:10px}
 
-.collection-box:hover{
-    transform:translateY(-2px);
+/* INFO */
+.info{padding:20px 2px 0}
+.title{font-size:clamp(21px,3vw,30px);line-height:1.2;letter-spacing:-.5px}
+.meta{margin-top:8px;color:var(--muted);font-size:13px}
+.divider{height:1px;background:var(--line);margin:28px 0}
 
-    box-shadow:
-        0 20px 45px
-        rgba(113,62,255,.35);
+/* COLLECTION */
+.collection{
+  padding:30px 20px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(139,92,246,.16),transparent 55%),
+    linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  box-shadow:0 18px 55px rgba(0,0,0,.18);
 }
-
-.collection-title{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:12px;
-
-    font-size:16px;
-
-    font-weight:900;
-
-    letter-spacing:.5px;
-
-    text-align:center;
+.collection-message{
+  text-align:center;
+  max-width:650px;
+  margin:0 auto;
 }
-
-.collection-subtitle{
-    margin-top:7px;
-
-    text-align:center;
-
-    font-size:12px;
-
-    color:
-        rgba(255,255,255,.82);
+.collection-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 14px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:24px;
+  background:linear-gradient(135deg,var(--purple),var(--blue));
+  box-shadow:0 10px 30px rgba(99,102,241,.25);
 }
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-    text-align:center;
-
-    color:#666673;
-
-    font-size:11px;
-
-    margin-top:24px;
+.collection-message h2{
+  font-size:clamp(24px,5vw,32px);
+  line-height:1.15;
+  letter-spacing:-.6px;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px){
-
-    .container{
-        padding:
-            13px
-            10px
-            25px;
-    }
-
-    .logo-icon{
-        width:38px;
-        height:38px;
-
-        border-radius:11px;
-    }
-
-    .logo-text{
-        font-size:17px;
-    }
-
-    .video-box{
-        border-radius:16px;
-    }
-
-    .video-title{
-        font-size:20px;
-    }
-
-    .fullscreen-button{
-        width:38px;
-        height:38px;
-
-        top:9px;
-        right:9px;
-
-        border-radius:10px;
-
-        font-size:17px;
-    }
-
-    .video-badge{
-        top:9px;
-        left:9px;
-
-        padding:6px 9px;
-
-        font-size:10px;
-    }
-
+.collection-message p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin:9px auto 18px;
 }
-
-
-/* =========================
-   DESKTOP FULLSCREEN
-========================= */
-
-.video-box:fullscreen{
-    width:100vw;
-    height:100vh;
-
-    background:#000;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:0;
+.collection-button{
+  border:0;
+  border-radius:13px;
+  padding:12px 20px;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--purple),#6366f1,var(--blue));
+  box-shadow:0 10px 30px rgba(99,102,241,.25);
 }
+footer{text-align:center;color:#73798c;font-size:12px;padding:18px 0 0}
 
-.video-box:fullscreen video{
-    width:100%;
-    height:100%;
-
-    aspect-ratio:auto;
-
-    object-fit:contain;
+@media(max-width:700px){
+  .topbar{height:58px;padding:0 12px}
+  main{padding:12px 10px 40px}
+  .player-shell{
+    border-radius:15px;
+  }
+  video{
+    aspect-ratio:5/4;
+  }
+  .controls{left:9px;right:9px;bottom:8px}
+  .ctrl{width:36px;height:35px}
+  .time{font-size:10px;min-width:56px}
+  .info{padding-top:16px}
+  .actions{margin-top:14px}
+  .action{flex:1;text-align:center;padding:10px 8px;font-size:13px}
+  .collection{padding:15px;border-radius:17px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card:nth-child(3){display:none}
+  .continue-box{padding:23px 17px 18px}
 }
-
-
-/* =========================
-   SAFARI FULLSCREEN
-========================= */
-
-.video-box:-webkit-full-screen{
-    width:100vw;
-    height:100vh;
-
-    background:#000;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:0;
-}
-
-.video-box:-webkit-full-screen video{
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-}
-
 </style>
-
 </head>
 
-
 <body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">▶</div>
+    <span>Video Player</span>
+  </div>
+  <button class="share-top" type="button" onclick="sharePage()" aria-label="Bagikan">↗</button>
+</header>
 
+<main>
+  <section class="player-shell" id="playerShell">
+    <video id="video" playsinline preload="metadata"
+      src="https://cdn2.videy.co/WgAfG3HX1.mp4"></video>
 
-<div class="container">
+    <div class="video-top-gradient"></div>
+    <div class="video-bottom-gradient"></div>
+    <div class="player-badge">HD • Mobile Friendly</div>
 
+    <!-- Overlay muncul setelah 20 detik. Video dijeda sampai user menekan tombol iklan. -->
+    <div class="continue-overlay" id="continueOverlay">
+      <div class="continue-box">
+        <div class="ad-icon">▶</div>
+        <h2>Lanjutkan Video</h2>
+        <p>
+          Tonton iklan terlebih dahulu untuk melanjutkan video.
+          Setelah tombol ditekan, iklan akan dibuka dan video dapat dilanjutkan.
+        </p>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+        <a
+          class="ad-button"
+          id="adButton"
+          href="https://www.profitableratecpmnetwork.com/dzth71h9?key=0d1e630d97de4d34d79e6dd18d6a2fe8"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="continueAfterAd()">
+          Lanjutkan &amp; Tonton Iklan
+        </a>
 
-    <header class="header">
-
-        <div class="logo">
-
-            <div class="logo-icon">
-                ▶
-            </div>
-
-            <div class="logo-text">
-                Video Player
-            </div>
-
+        <div class="small-note">
+          Iklan dibuka setelah kamu menekan tombol.
         </div>
-
-        <div class="header-dot"></div>
-
-    </header>
-
-
-
-    <!-- =========================
-         VIDEO
-    ========================== -->
-
-    <div
-        class="video-box"
-        id="videoBox"
-    >
-
-        <div class="video-badge">
-            ● NOW PLAYING
-        </div>
-
-
-        <button
-            class="fullscreen-button"
-            id="fullscreenButton"
-            type="button"
-            aria-label="Fullscreen"
-        >
-            ⛶
-        </button>
-
-
-        <video
-            id="mainVideo"
-            controls
-            playsinline
-            preload="metadata"
-            poster="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg"
-        >
-
-            <source
-                src="https://cdn2.videy.co/WgAfG3HX1.mp4"
-                type="video/mp4"
-            >
-
-            Browser Anda tidak mendukung video HTML5.
-
-        </video>
-
+      </div>
     </div>
 
+    <!-- Kontrol video custom, bukan kontrol bawaan browser -->
+    <div class="controls">
+      <button class="ctrl" id="playBtn" type="button" onclick="togglePlay()">▶</button>
 
+      <div class="progress" onclick="seekVideo(event)">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
 
-    <!-- =========================
-         VIDEO INFO
-    ========================== -->
+      <div class="time" id="time">0:00 / 0:00</div>
 
-    <div class="video-info">
-
-        <div class="video-title">
-            Video Trending
-        </div>
-
-        <div class="video-description">
-            Nikmati video dengan tampilan player yang nyaman
-            dan responsif di perangkat mobile maupun desktop.
-        </div>
-
+      <button class="ctrl" type="button"
+        onclick="toggleFullscreen()" aria-label="Fullscreen">⛶</button>
     </div>
+  </section>
 
+  <section class="info">
+    <h1 class="title">Video Terbaru</h1>
+    <div class="meta">Nikmati video dengan tampilan nyaman di HP maupun desktop.</div>
 
+  </section>
 
-    <div class="divider"></div>
+  <div class="divider"></div>
 
-
-
-    <!-- =========================
-         VIDEO LAINNYA
-    ========================== -->
-
-    <div class="section-title">
-        ✨
-        <span>Video Lainnya</span>
+  <section class="collection" id="collection">
+    <div class="collection-message">
+      <div class="collection-icon">▦</div>
+      <h2>Kumpulan Video Berikutnya</h2>
+      <p>Klik di sini untuk melihat dan menonton kumpulan video berikutnya.</p>
+      <button class="collection-button" type="button" onclick="showCollectionMessage()">
+        Lihat Kumpulan Video
+      </button>
     </div>
+  </section>
 
-
-
-    <!-- =========================
-         COLLECTION BUTTON
-    ========================== -->
-
-    <a
-        href="https://www.profitableratecpmnetwork.com/dzth71h9?key=0d1e630d97de4d34d79e6dd18d6a2fe8"
-        class="collection-box"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-
-        <div class="collection-title">
-
-            <span>➡️</span>
-
-            <span>
-                KUMPULAN VIDEO
-            </span>
-
-            <span>⬅️</span>
-
-        </div>
-
-        <div class="collection-subtitle">
-            🎬 Lihat video lainnya di sini
-        </div>
-
-    </a>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <div class="footer">
-        Video Player • Mobile Friendly
-    </div>
-
-
-</div>
-
-
+  <footer>© 2026 • Video Player</footer>
+</main>
 
 <script>
+const video = document.getElementById("video");
+const shell = document.getElementById("playerShell");
+const playBtn = document.getElementById("playBtn");
+const progressFill = document.getElementById("progressFill");
+const timeEl = document.getElementById("time");
+const continueOverlay = document.getElementById("continueOverlay");
 
-/* =========================
-   VIDEO
-========================= */
+let adGateShown = false;
 
-const video =
-    document.getElementById("mainVideo");
+function togglePlay(){
+  if(video.paused) video.play();
+  else video.pause();
+}
 
+video.addEventListener("play",()=>playBtn.textContent="❚❚");
+video.addEventListener("pause",()=>playBtn.textContent="▶");
 
-const videoBox =
-    document.getElementById("videoBox");
+video.addEventListener("timeupdate",()=>{
+  if(!video.duration) return;
 
+  progressFill.style.width =
+    (video.currentTime / video.duration * 100) + "%";
 
-const fullscreenButton =
-    document.getElementById("fullscreenButton");
+  timeEl.textContent =
+    formatTime(video.currentTime) + " / " +
+    formatTime(video.duration);
 
+  // Setelah 20 detik, video dijeda dan overlay ditampilkan.
+  if(!adGateShown && video.currentTime >= 20){
+    adGateShown = true;
+    video.pause();
+    continueOverlay.classList.add("show");
+  }
+});
 
-/* =========================
-   FULLSCREEN
-========================= */
+function formatTime(seconds){
+  if(!Number.isFinite(seconds)) return "0:00";
 
-fullscreenButton.addEventListener(
-    "click",
-    function(){
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60)
+    .toString()
+    .padStart(2,"0");
 
-        if(
-            document.fullscreenElement ||
-            document.webkitFullscreenElement
-        ){
+  return m + ":" + s;
+}
 
-            if(document.exitFullscreen){
+function seekVideo(e){
+  if(!video.duration || continueOverlay.classList.contains("show")) return;
 
-                document.exitFullscreen();
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = Math.min(
+    1,
+    Math.max(0,(e.clientX - rect.left) / rect.width)
+  );
 
-            }else if(document.webkitExitFullscreen){
+  video.currentTime = pct * video.duration;
+}
 
-                document.webkitExitFullscreen();
+function continueAfterAd(){
+  // Link iklan dibuka di tab baru melalui klik user.
+  // Video pada halaman ini dilanjutkan setelah klik.
+  continueOverlay.classList.remove("show");
 
-            }
+  setTimeout(()=>{
+    video.play().catch(()=>{});
+  },350);
+}
 
-            return;
-        }
-
-
-        if(videoBox.requestFullscreen){
-
-            videoBox.requestFullscreen();
-
-        }else if(videoBox.webkitRequestFullscreen){
-
-            videoBox.webkitRequestFullscreen();
-
-        }else if(video.webkitEnterFullscreen){
-
-            video.webkitEnterFullscreen();
-
-        }
-
+async function toggleFullscreen(){
+  try{
+    if(document.fullscreenElement){
+      await document.exitFullscreen();
+      return;
     }
-);
 
-
-/* =========================
-   FULLSCREEN ICON
-========================= */
-
-document.addEventListener(
-    "fullscreenchange",
-    function(){
-
-        if(document.fullscreenElement){
-
-            fullscreenButton.textContent = "⛶";
-
-        }else{
-
-            fullscreenButton.textContent = "⛶";
-
-        }
-
+    if(shell.requestFullscreen){
+      await shell.requestFullscreen();
+      return;
     }
-);
 
+    shell.classList.add("is-fullscreen");
 
-/* =========================
-   WEBKIT FULLSCREEN
-========================= */
+  }catch(e){
+    shell.classList.toggle("is-fullscreen");
+  }
+}
 
-document.addEventListener(
-    "webkitfullscreenchange",
-    function(){
+document.addEventListener("fullscreenchange",()=>{
+  if(document.fullscreenElement === shell){
+    shell.classList.add("is-fullscreen");
+  }else{
+    shell.classList.remove("is-fullscreen");
+  }
+});
 
-        fullscreenButton.textContent = "⛶";
-
+async function sharePage(){
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:document.title,
+        text:"Tonton video ini",
+        url:location.href
+      });
+    }else{
+      await navigator.clipboard.writeText(location.href);
+      alert("Link halaman berhasil disalin");
     }
-);
+  }catch(e){}
+}
+
+function showCollectionMessage(){
+  alert("Kumpulan video berikutnya akan tersedia di sini.");
+}
 
 </script>
-
-
 </body>
-
 </html>
