@@ -143,55 +143,58 @@ video{display:block;width:100%;aspect-ratio:16/10;object-fit:contain;background:
 .info{padding:20px 2px 0}
 .title{font-size:clamp(21px,3vw,30px);line-height:1.2;letter-spacing:-.5px}
 .meta{margin-top:8px;color:var(--muted);font-size:13px}
-.divider{height:1px;background:var(--line);margin:28px 0}
+.divider{height:1px;background:var(--line);margin:22px 0 0}
 
 /* COLLECTION */
 .collection{
-  padding:30px 20px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(139,92,246,.16),transparent 55%),
-    linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
-  box-shadow:0 18px 55px rgba(0,0,0,.18);
+  padding:24px 0 4px;
 }
-.collection-message{
+.collection-heading{
   text-align:center;
-  max-width:650px;
-  margin:0 auto;
+  margin:0 auto 18px;
 }
-.collection-icon{
-  width:54px;
-  height:54px;
-  margin:0 auto 14px;
-  border-radius:16px;
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:24px;
-  background:linear-gradient(135deg,var(--purple),var(--blue));
-  box-shadow:0 10px 30px rgba(99,102,241,.25);
-}
-.collection-message h2{
-  font-size:clamp(24px,5vw,32px);
+.collection-heading h2{
+  font-size:clamp(23px,5vw,30px);
   line-height:1.15;
-  letter-spacing:-.6px;
+  letter-spacing:-.5px;
 }
-.collection-message p{
+.collection-heading p{
   color:var(--muted);
   font-size:13px;
-  line-height:1.6;
-  margin:9px auto 18px;
+  margin-top:7px;
 }
-.collection-button{
-  border:0;
-  border-radius:13px;
-  padding:12px 20px;
+.collection-banner{
+  width:100%;
+  min-height:105px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:20px;
+  padding:18px 14px;
   color:#fff;
-  font-weight:800;
   cursor:pointer;
-  background:linear-gradient(135deg,var(--purple),#6366f1,var(--blue));
-  box-shadow:0 10px 30px rgba(99,102,241,.25);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:
+    linear-gradient(115deg,#1685ff 0%,#5569ff 38%,#9c3bea 68%,#df19bd 100%);
+  box-shadow:
+    0 12px 34px rgba(77,74,255,.24),
+    inset 0 1px 0 rgba(255,255,255,.28);
+  transition:transform .2s,filter .2s;
+}
+.collection-banner:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.05);
+}
+.collection-banner strong{
+  font-size:clamp(23px,5.5vw,31px);
+  line-height:1.1;
+  letter-spacing:.2px;
+}
+.collection-banner span{
+  font-size:14px;
+  font-weight:750;
 }
 footer{text-align:center;color:#73798c;font-size:12px;padding:18px 0 0}
 
@@ -214,6 +217,13 @@ footer{text-align:center;color:#73798c;font-size:12px;padding:18px 0 0}
   .cards{grid-template-columns:repeat(2,1fr)}
   .card:nth-child(3){display:none}
   .continue-box{padding:23px 17px 18px}
+  .collection-banner strong{
+    gap:7px;
+    font-size:clamp(18px,5vw,25px);
+  }
+  .collection-banner .arrow{
+    font-size:clamp(18px,5vw,25px);
+  }
 }
 </style>
 </head>
@@ -286,14 +296,15 @@ footer{text-align:center;color:#73798c;font-size:12px;padding:18px 0 0}
   <div class="divider"></div>
 
   <section class="collection" id="collection">
-    <div class="collection-message">
-      <div class="collection-icon">▦</div>
-      <h2>Kumpulan Video Berikutnya</h2>
-      <p>Klik di sini untuk melihat dan menonton kumpulan video berikutnya.</p>
-      <button class="collection-button" type="button" onclick="showCollectionMessage()">
-        Lihat Kumpulan Video
-      </button>
+    <div class="collection-heading">
+      <h2>✨ Video Lainnya</h2>
+      <p>Kumpulan video terbaru dan video pilihan</p>
     </div>
+
+    <button class="collection-banner" type="button" onclick="showCollectionMessage()">
+      <strong><span class="arrow">➡️</span><span class="banner-title">KUMPULAN VIDEO</span><span class="arrow">⬅️</span></strong>
+      <span>🎬 Lihat video lainnya di sini</span>
+    </button>
   </section>
 
   <footer>© 2026 • Video Player</footer>
