@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,39 +11,19 @@
 <title>Video Trending</title>
 
 <meta name="description"
-      content="Tonton video trending terbaru dan video pilihan lainnya.">
-
-
-<!-- =========================
-     OPEN GRAPH
-========================= -->
-
-<meta property="og:type"
-      content="website">
+      content="Tonton video terbaru dan video lainnya.">
 
 <meta property="og:title"
       content="Video Trending">
 
 <meta property="og:description"
-      content="Tonton video trending terbaru dan video pilihan lainnya.">
+      content="Tonton video terbaru dan video lainnya.">
 
 <meta property="og:image"
       content="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg">
 
-<meta property="og:image:secure_url"
-      content="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg">
-
-<meta property="og:image:type"
-      content="image/jpeg">
-
-<meta property="og:image:width"
-      content="1200">
-
-<meta property="og:image:height"
-      content="630">
-
-<meta property="og:url"
-      content="https://website-kamu.com/">
+<meta property="og:type"
+      content="website">
 
 <meta name="twitter:card"
       content="summary_large_image">
@@ -51,7 +32,7 @@
       content="Video Trending">
 
 <meta name="twitter:description"
-      content="Tonton video trending terbaru dan video pilihan lainnya.">
+      content="Tonton video terbaru dan video lainnya.">
 
 <meta name="twitter:image"
       content="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg">
@@ -59,49 +40,61 @@
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
+html,
+body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
     background:
         radial-gradient(
-            circle at 15% 10%,
-            rgba(103,70,255,.16),
-            transparent 30%
+            circle at top left,
+            rgba(111,76,255,.18),
+            transparent 35%
         ),
-
         radial-gradient(
-            circle at 90% 45%,
-            rgba(0,180,255,.10),
+            circle at top right,
+            rgba(255,45,150,.12),
             transparent 30%
         ),
-
-        linear-gradient(
-            180deg,
-            #080914 0%,
-            #090a16 45%,
-            #05060d 100%
-        );
+        #08080d;
 
     color:#fff;
 
-    min-height:100vh;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    padding-bottom:40px;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+    width:100%;
+    max-width:850px;
+
+    margin:0 auto;
+
+    padding:
+        18px
+        14px
+        30px;
 }
 
 
@@ -110,365 +103,184 @@ body{
 ========================= */
 
 .header{
-
-    height:108px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
-    padding:0 22px;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.08);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(13,15,31,.97),
-            rgba(9,11,24,.94)
-        );
-
-    position:relative;
-
-    z-index:10;
+    margin-bottom:18px;
 }
 
-.brand{
-
+.logo{
     display:flex;
-
     align-items:center;
-
-    gap:18px;
+    gap:10px;
 }
 
-.brand-icon{
-
-    width:68px;
-    height:68px;
+.logo-icon{
+    width:42px;
+    height:42px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
-    border-radius:22px;
-
-    font-size:32px;
+    border-radius:13px;
 
     background:
         linear-gradient(
             135deg,
-            #7656ff,
-            #31b8ef
+            #7b5cff,
+            #c52cff
         );
 
     box-shadow:
-        0 10px 35px
-        rgba(91,85,255,.35);
+        0 8px 30px
+        rgba(124,80,255,.30);
+
+    font-size:20px;
 }
 
-.brand-title{
-
-    font-size:31px;
-
+.logo-text{
+    font-size:19px;
     font-weight:800;
 
-    letter-spacing:-1px;
+    letter-spacing:.2px;
 }
 
-.header-button{
+.header-dot{
+    width:9px;
+    height:9px;
 
-    width:76px;
-    height:76px;
+    border-radius:50%;
 
-    border-radius:23px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:30px;
-
-    color:#fff;
-
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    background:
-        rgba(255,255,255,.035);
+    background:#7dffb2;
 
     box-shadow:
-        inset 0 1px 0
-        rgba(255,255,255,.04);
+        0 0 12px
+        rgba(125,255,178,.8);
 }
 
 
 /* =========================
-   MAIN
+   VIDEO AREA
 ========================= */
 
-.container{
-
-    width:100%;
-
-    max-width:1000px;
-
-    margin:auto;
-
-    padding:
-        26px 20px 50px;
-}
-
-
-/* =========================
-   VIDEO
-========================= */
-
-.video-wrapper{
-
-    width:100%;
-
+.video-box{
     position:relative;
 
-    background:#000;
-
-    border-radius:27px;
+    width:100%;
 
     overflow:hidden;
 
-    border:
-        1px solid rgba(255,255,255,.10);
+    border-radius:20px;
+
+    background:#000;
 
     box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.45);
+        0 20px 60px
+        rgba(0,0,0,.55),
+
+        0 0 0 1px
+        rgba(255,255,255,.06);
 }
 
-.video-wrapper video{
+.video-box video{
+    display:block;
 
     width:100%;
 
-    height:min(76vh,700px);
+    height:auto;
 
-    min-height:470px;
-
-    display:block;
-
-    object-fit:contain;
+    aspect-ratio:16 / 9;
 
     background:#000;
+
+    object-fit:cover;
 }
 
 
 /* =========================
-   BADGE
+   VIDEO BADGE
 ========================= */
 
 .video-badge{
-
     position:absolute;
 
-    top:20px;
+    top:13px;
+    left:13px;
 
-    left:20px;
+    z-index:5;
 
-    z-index:3;
+    padding:7px 11px;
 
-    padding:
-        12px 18px;
-
-    border-radius:30px;
+    border-radius:999px;
 
     background:
-        rgba(12,14,24,.82);
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    backdrop-filter:blur(12px);
-
-    font-size:17px;
-
-    font-weight:700;
-}
-
-
-/* =========================
-   CUSTOM FULLSCREEN
-========================= */
-
-.fullscreen-button{
-
-    position:absolute;
-
-    right:18px;
-
-    bottom:18px;
-
-    width:62px;
-
-    height:62px;
-
-    border-radius:18px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.16);
-
-    background:
-        rgba(8,9,17,.82);
+        rgba(0,0,0,.62);
 
     backdrop-filter:blur(10px);
 
+    -webkit-backdrop-filter:blur(10px);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:.7px;
+
     color:#fff;
-
-    font-size:26px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    z-index:5;
-}
-
-.fullscreen-button:active{
-
-    transform:scale(.94);
 }
 
 
 /* =========================
-   TRIGGER OVERLAY
+   FULLSCREEN BUTTON
 ========================= */
 
-.ad-trigger-overlay{
-
+.fullscreen-button{
     position:absolute;
 
-    inset:0;
+    right:12px;
+    top:12px;
 
-    z-index:20;
+    z-index:10;
 
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:25px;
-
-    background:
-        rgba(0,0,0,.78);
-
-    backdrop-filter:blur(8px);
-}
-
-.ad-trigger-overlay.show{
+    width:42px;
+    height:42px;
 
     display:flex;
-}
+    align-items:center;
+    justify-content:center;
 
-.ad-trigger-box{
+    border:0;
 
-    width:min(430px,94%);
-
-    padding:30px 22px;
-
-    text-align:center;
-
-    border-radius:25px;
+    border-radius:12px;
 
     background:
-        linear-gradient(
-            145deg,
-            #101326,
-            #171a32
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.16);
-
-    box-shadow:
-        0 20px 70px
         rgba(0,0,0,.65);
-}
-
-.ad-trigger-icon{
-
-    font-size:42px;
-
-    margin-bottom:12px;
-}
-
-.ad-trigger-box h2{
-
-    font-size:27px;
-
-    margin-bottom:10px;
-}
-
-.ad-trigger-box p{
-
-    color:#aeb3c5;
-
-    font-size:16px;
-
-    line-height:1.5;
-
-    margin-bottom:22px;
-}
-
-.continue-button{
-
-    width:100%;
-
-    padding:16px 20px;
-
-    border:none;
-
-    border-radius:15px;
 
     color:#fff;
 
-    font-size:18px;
-
-    font-weight:800;
+    font-size:19px;
 
     cursor:pointer;
 
-    background:
-        linear-gradient(
-            100deg,
-            #287cff,
-            #7350ff,
-            #d126df
-        );
+    backdrop-filter:blur(10px);
 
-    box-shadow:
-        0 12px 30px
-        rgba(90,75,255,.35);
+    -webkit-backdrop-filter:blur(10px);
 
-    transition:.2s;
+    transition:
+        transform .2s ease,
+        background .2s ease;
 }
 
-.continue-button:active{
+.fullscreen-button:hover{
+    transform:scale(1.05);
 
-    transform:scale(.98);
+    background:
+        rgba(108,75,255,.85);
 }
 
 
@@ -477,29 +289,28 @@ body{
 ========================= */
 
 .video-info{
-
     padding:
-        28px 4px 0;
+        18px
+        4px
+        10px;
 }
 
-.video-info h1{
+.video-title{
+    font-size:23px;
 
-    font-size:38px;
+    line-height:1.25;
 
-    line-height:1.15;
+    font-weight:800;
 
-    margin-bottom:12px;
-
-    letter-spacing:-1px;
+    margin-bottom:7px;
 }
 
-.video-info p{
+.video-description{
+    color:#a9a9b5;
 
-    color:#9ea3b7;
+    font-size:13px;
 
-    font-size:21px;
-
-    line-height:1.45;
+    line-height:1.6;
 }
 
 
@@ -508,54 +319,38 @@ body{
 ========================= */
 
 .divider{
-
     width:100%;
-
     height:1px;
 
     margin:
-        34px 0;
+        18px
+        0;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.15),
+            rgba(255,255,255,.12),
             transparent
         );
 }
 
 
 /* =========================
-   VIDEO LAINNYA
+   SECTION TITLE
 ========================= */
 
-.other-section{
+.section-title{
+    display:flex;
+    align-items:center;
 
-    text-align:center;
-
-    padding:
-        5px 0 10px;
-}
-
-.other-title{
-
-    font-size:36px;
-
-    font-weight:800;
-
-    letter-spacing:-.8px;
+    gap:8px;
 
     margin-bottom:12px;
-}
 
-.other-description{
+    font-size:15px;
 
-    color:#9ea3b7;
-
-    font-size:20px;
-
-    margin-bottom:26px;
+    font-weight:800;
 }
 
 
@@ -564,108 +359,71 @@ body{
 ========================= */
 
 .collection-box{
-
-    position:relative;
-
     display:block;
 
     width:100%;
 
     padding:
-        28px 20px;
-
-    border-radius:27px;
+        17px
+        15px;
 
     text-decoration:none;
 
     color:#fff;
 
+    border-radius:17px;
+
     background:
         linear-gradient(
-            110deg,
-            #218cff 0%,
-            #5862ff 45%,
-            #d025df 100%
+            135deg,
+            #6848ff 0%,
+            #8b35ff 45%,
+            #e12b9a 100%
         );
 
-    border:
-        2px solid
-        rgba(255,255,255,.25);
-
     box-shadow:
-        0 18px 55px
-        rgba(83,75,255,.27);
-
-    overflow:hidden;
+        0 15px 35px
+        rgba(113,62,255,.24);
 
     transition:
-        transform .2s,
-        box-shadow .2s;
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.collection-box::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:230px;
-
-    height:230px;
-
-    top:-140px;
-
-    left:-80px;
-
-    background:
-        rgba(255,255,255,.18);
-
-    border-radius:50%;
-
-    filter:blur(35px);
-}
-
-.collection-box:active{
-
-    transform:scale(.98);
+.collection-box:hover{
+    transform:translateY(-2px);
 
     box-shadow:
-        0 10px 35px
-        rgba(83,75,255,.2);
+        0 20px 45px
+        rgba(113,62,255,.35);
 }
 
 .collection-title{
+    display:flex;
 
-    position:relative;
+    align-items:center;
+    justify-content:center;
 
-    z-index:2;
+    gap:12px;
 
-    font-size:32px;
+    font-size:16px;
 
     font-weight:900;
 
-    letter-spacing:.2px;
+    letter-spacing:.5px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:9px;
-
-    margin-bottom:12px;
+    text-align:center;
 }
 
 .collection-subtitle{
+    margin-top:7px;
 
-    position:relative;
+    text-align:center;
 
-    z-index:2;
+    font-size:12px;
 
-    font-size:20px;
-
-    font-weight:700;
+    color:
+        rgba(255,255,255,.82);
 }
 
 
@@ -674,39 +432,13 @@ body{
 ========================= */
 
 .footer{
-
     text-align:center;
 
-    color:#676b7d;
+    color:#666673;
 
-    font-size:16px;
+    font-size:11px;
 
-    padding:
-        40px 0 10px;
-}
-
-
-/* =========================
-   DESKTOP
-========================= */
-
-@media(min-width:800px){
-
-    .container{
-
-        padding-top:38px;
-    }
-
-    .video-wrapper video{
-
-        height:650px;
-    }
-
-    .video-info h1{
-
-        font-size:42px;
-    }
-
+    margin-top:24px;
 }
 
 
@@ -716,151 +448,103 @@ body{
 
 @media(max-width:600px){
 
-    .header{
-
-        height:108px;
-
-        padding:
-            0 22px;
-    }
-
-    .brand-icon{
-
-        width:68px;
-
-        height:68px;
-
-        border-radius:21px;
-    }
-
-    .brand-title{
-
-        font-size:29px;
-    }
-
-    .header-button{
-
-        width:76px;
-
-        height:76px;
-    }
-
     .container{
-
         padding:
-            0 20px 42px;
+            13px
+            10px
+            25px;
     }
 
-    .video-wrapper{
+    .logo-icon{
+        width:38px;
+        height:38px;
 
-        margin-top:0;
-
-        border-radius:
-            0 0 25px 25px;
+        border-radius:11px;
     }
 
-    .video-wrapper video{
-
-        width:100%;
-
-        height:560px;
-
-        min-height:560px;
-
-        object-fit:contain;
+    .logo-text{
+        font-size:17px;
     }
 
-    .video-badge{
-
-        top:18px;
-
-        left:18px;
-
-        font-size:16px;
-
-        padding:
-            11px 17px;
+    .video-box{
+        border-radius:16px;
     }
 
-    .fullscreen-button{
-
-        width:62px;
-
-        height:62px;
-
-        right:17px;
-
-        bottom:17px;
-    }
-
-    .video-info{
-
-        padding-top:27px;
-    }
-
-    .video-info h1{
-
-        font-size:34px;
-    }
-
-    .video-info p{
-
+    .video-title{
         font-size:20px;
     }
 
-    .other-title{
+    .fullscreen-button{
+        width:38px;
+        height:38px;
 
-        font-size:34px;
+        top:9px;
+        right:9px;
+
+        border-radius:10px;
+
+        font-size:17px;
     }
 
-    .other-description{
+    .video-badge{
+        top:9px;
+        left:9px;
 
-        font-size:18px;
+        padding:6px 9px;
 
-        line-height:1.5;
-    }
-
-    .collection-box{
-
-        padding:
-            27px 15px;
-    }
-
-    .collection-title{
-
-        font-size:28px;
-
-        gap:7px;
-    }
-
-    .collection-subtitle{
-
-        font-size:18px;
+        font-size:10px;
     }
 
 }
 
 
 /* =========================
-   FULLSCREEN
+   DESKTOP FULLSCREEN
 ========================= */
 
-.video-wrapper:fullscreen{
-
+.video-box:fullscreen{
     width:100vw;
-
     height:100vh;
 
     background:#000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:0;
 }
 
-.video-wrapper:fullscreen video{
-
+.video-box:fullscreen video{
     width:100%;
-
     height:100%;
 
-    min-height:0;
+    aspect-ratio:auto;
+
+    object-fit:contain;
+}
+
+
+/* =========================
+   SAFARI FULLSCREEN
+========================= */
+
+.video-box:-webkit-full-screen{
+    width:100vw;
+    height:100vh;
+
+    background:#000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:0;
+}
+
+.video-box:-webkit-full-screen video{
+    width:100%;
+    height:100%;
 
     object-fit:contain;
 }
@@ -873,167 +557,119 @@ body{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="header">
-
-    <div class="brand">
-
-        <div class="brand-icon">
-            ▶
-        </div>
-
-        <div class="brand-title">
-            Video Player
-        </div>
-
-    </div>
-
-    <div class="header-button">
-        ↗
-    </div>
-
-</header>
-
-
-<main class="container">
-
-
-<!-- =========================
-     VIDEO
-========================= -->
-
-<section
-    class="video-wrapper"
-    id="videoBox"
->
-
-    <div class="video-badge">
-        HD • Mobile Friendly
-    </div>
-
-
-    <video
-        id="mainVideo"
-        controls
-        playsinline
-        preload="metadata"
-        poster="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg"
-    >
-
-        <source
-            src="https://cdn2.videy.co/WgAfG3HX1.mp4"
-            type="video/mp4"
-        >
-
-        Browser kamu tidak mendukung video HTML5.
-
-    </video>
+<div class="container">
 
 
     <!-- =========================
-         TRIGGER IKLAN
-    ========================= -->
+         HEADER
+    ========================== -->
 
-    <div
-        class="ad-trigger-overlay"
-        id="adTriggerOverlay"
-    >
+    <header class="header">
 
-        <div class="ad-trigger-box">
+        <div class="logo">
 
-            <div class="ad-trigger-icon">
-                ▶️
+            <div class="logo-icon">
+                ▶
             </div>
 
-            <h2>
-                Lanjutkan Video
-            </h2>
+            <div class="logo-text">
+                Video Player
+            </div>
 
-            <p>
-                Tonton iklan terlebih dahulu
-                untuk melanjutkan video.
-            </p>
+        </div>
 
-            <button
-                class="continue-button"
-                id="continueButton"
-                type="button"
+        <div class="header-dot"></div>
+
+    </header>
+
+
+
+    <!-- =========================
+         VIDEO
+    ========================== -->
+
+    <div
+        class="video-box"
+        id="videoBox"
+    >
+
+        <div class="video-badge">
+            ● NOW PLAYING
+        </div>
+
+
+        <button
+            class="fullscreen-button"
+            id="fullscreenButton"
+            type="button"
+            aria-label="Fullscreen"
+        >
+            ⛶
+        </button>
+
+
+        <video
+            id="mainVideo"
+            controls
+            playsinline
+            preload="metadata"
+            poster="https://jpcdn.it/img/85026057906f049244905cafa5704ba6.jpg"
+        >
+
+            <source
+                src="https://cdn2.videy.co/WgAfG3HX1.mp4"
+                type="video/mp4"
             >
 
-                ▶ Lanjutkan Video
+            Browser Anda tidak mendukung video HTML5.
 
-            </button>
+        </video>
 
+    </div>
+
+
+
+    <!-- =========================
+         VIDEO INFO
+    ========================== -->
+
+    <div class="video-info">
+
+        <div class="video-title">
+            Video Trending
+        </div>
+
+        <div class="video-description">
+            Nikmati video dengan tampilan player yang nyaman
+            dan responsif di perangkat mobile maupun desktop.
         </div>
 
     </div>
 
 
-    <!-- =========================
-         CUSTOM FULLSCREEN
-    ========================= -->
 
-    <button
-        class="fullscreen-button"
-        id="fullscreenButton"
-        type="button"
-        aria-label="Fullscreen"
-    >
+    <div class="divider"></div>
 
-        ⛶
-
-    </button>
-
-</section>
-
-
-<!-- =========================
-     VIDEO INFO
-========================= -->
-
-<section class="video-info">
-
-    <h1>
-        Video Trending
-    </h1>
-
-    <p>
-        Nikmati video dengan tampilan nyaman
-        di HP maupun desktop.
-    </p>
-
-</section>
-
-
-<div class="divider"></div>
-
-
-<!-- =========================
-     VIDEO LAINNYA
-========================= -->
-
-<section class="other-section">
-
-    <h2 class="other-title">
-        ✨ Video Lainnya
-    </h2>
-
-    <p class="other-description">
-        Kumpulan video terbaru dan video pilihan
-    </p>
 
 
     <!-- =========================
-         KUMPULAN VIDEO
-    ========================= -->
+         VIDEO LAINNYA
+    ========================== -->
+
+    <div class="section-title">
+        ✨
+        <span>Video Lainnya</span>
+    </div>
+
+
+
+    <!-- =========================
+         COLLECTION BUTTON
+    ========================== -->
 
     <a
         href="https://www.profitableratecpmnetwork.com/dzth71h9?key=0d1e630d97de4d34d79e6dd18d6a2fe8"
         class="collection-box"
-        id="collectionButton"
         target="_blank"
         rel="noopener noreferrer"
     >
@@ -1042,291 +678,91 @@ body{
 
             <span>➡️</span>
 
-            <span>KUMPULAN VIDEO</span>
+            <span>
+                KUMPULAN VIDEO
+            </span>
 
             <span>⬅️</span>
 
         </div>
 
         <div class="collection-subtitle">
-
             🎬 Lihat video lainnya di sini
-
         </div>
 
     </a>
 
-</section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-<footer class="footer">
-
-    © 2026 • Video Player
-
-</footer>
+    <div class="footer">
+        Video Player • Mobile Friendly
+    </div>
 
 
-</main>
+</div>
+
 
 
 <script>
 
 /* =========================
-   ELEMENT
+   VIDEO
 ========================= */
 
 const video =
-    document.getElementById(
-        "mainVideo"
-    );
+    document.getElementById("mainVideo");
+
 
 const videoBox =
-    document.getElementById(
-        "videoBox"
-    );
+    document.getElementById("videoBox");
+
 
 const fullscreenButton =
-    document.getElementById(
-        "fullscreenButton"
-    );
-
-const adTriggerOverlay =
-    document.getElementById(
-        "adTriggerOverlay"
-    );
-
-const continueButton =
-    document.getElementById(
-        "continueButton"
-    );
+    document.getElementById("fullscreenButton");
 
 
 /* =========================
-   DIRECT LINK
+   FULLSCREEN
 ========================= */
 
-const directLink =
-    "https://www.profitableratecpmnetwork.com/dzth71h9?key=0d1e630d97de4d34d79e6dd18d6a2fe8";
-
-
-/* =========================
-   TRIGGER
-========================= */
-
-const triggerTimes = [
-    20,
-    40
-];
-
-let currentTrigger = 0;
-
-let savedVideoTime = 0;
-
-
-/* =========================
-   CEK WAKTU VIDEO
-========================= */
-
-video.addEventListener(
-    "timeupdate",
+fullscreenButton.addEventListener(
+    "click",
     function(){
 
         if(
-            currentTrigger >=
-            triggerTimes.length
+            document.fullscreenElement ||
+            document.webkitFullscreenElement
         ){
+
+            if(document.exitFullscreen){
+
+                document.exitFullscreen();
+
+            }else if(document.webkitExitFullscreen){
+
+                document.webkitExitFullscreen();
+
+            }
 
             return;
         }
 
 
-        const triggerTime =
-            triggerTimes[
-                currentTrigger
-            ];
+        if(videoBox.requestFullscreen){
 
+            videoBox.requestFullscreen();
 
-        if(
-            video.currentTime >=
-            triggerTime
-        ){
+        }else if(videoBox.webkitRequestFullscreen){
 
-            /*
-             * Simpan posisi trigger.
-             */
+            videoBox.webkitRequestFullscreen();
 
-            savedVideoTime =
-                triggerTime;
+        }else if(video.webkitEnterFullscreen){
 
-
-            /*
-             * Kunci posisi video
-             * tepat pada detik trigger.
-             */
-
-            video.currentTime =
-                savedVideoTime;
-
-
-            /*
-             * Pause video.
-             */
-
-            video.pause();
-
-
-            /*
-             * Tampilkan overlay.
-             */
-
-            adTriggerOverlay.classList.add(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   LANJUTKAN VIDEO
-========================= */
-
-continueButton.addEventListener(
-    "click",
-    function(){
-
-        /*
-         * Naikkan nomor trigger.
-         *
-         * 0 = trigger 20 detik
-         * 1 = trigger 40 detik
-         * 2 = selesai
-         */
-
-        currentTrigger++;
-
-
-        /*
-         * Buka Direct Link.
-         *
-         * Dibuka di tab baru agar
-         * halaman video tetap ada.
-         */
-
-        window.open(
-            directLink,
-            "_blank"
-        );
-
-
-        /*
-         * Sembunyikan overlay.
-         */
-
-        adTriggerOverlay.classList.remove(
-            "show"
-        );
-
-
-        /*
-         * Kembalikan video ke posisi
-         * terakhir.
-         */
-
-        video.currentTime =
-            savedVideoTime;
-
-
-        /*
-         * Lanjutkan video.
-         */
-
-        const playPromise =
-            video.play();
-
-
-        if(playPromise){
-
-            playPromise.catch(
-                function(){
-
-                    /*
-                     * Pada browser tertentu,
-                     * browser dapat meminta
-                     * user menekan Play lagi.
-                     */
-
-                    console.log(
-                        "Silakan tekan Play untuk melanjutkan video."
-                    );
-
-                }
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================
-   CUSTOM FULLSCREEN
-========================= */
-
-fullscreenButton.addEventListener(
-    "click",
-    async function(){
-
-        try{
-
-            if(
-                !document.fullscreenElement
-            ){
-
-                if(
-                    videoBox.requestFullscreen
-                ){
-
-                    await videoBox.requestFullscreen();
-
-                }
-
-                else if(
-                    videoBox.webkitRequestFullscreen
-                ){
-
-                    videoBox.webkitRequestFullscreen();
-
-                }
-
-            }
-
-            else{
-
-                if(
-                    document.exitFullscreen
-                ){
-
-                    await document.exitFullscreen();
-
-                }
-
-            }
-
-        }
-
-        catch(error){
-
-            console.log(
-                "Fullscreen tidak tersedia:",
-                error
-            );
+            video.webkitEnterFullscreen();
 
         }
 
@@ -1342,8 +778,29 @@ document.addEventListener(
     "fullscreenchange",
     function(){
 
-        fullscreenButton.innerHTML =
-            "⛶";
+        if(document.fullscreenElement){
+
+            fullscreenButton.textContent = "⛶";
+
+        }else{
+
+            fullscreenButton.textContent = "⛶";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   WEBKIT FULLSCREEN
+========================= */
+
+document.addEventListener(
+    "webkitfullscreenchange",
+    function(){
+
+        fullscreenButton.textContent = "⛶";
 
     }
 );
@@ -1352,4 +809,5 @@ document.addEventListener(
 
 
 </body>
+
 </html>
